@@ -71,13 +71,13 @@ while True:
     print(f"3 - baton magico con un precio de ${BASTON} clp")
     print("4 - salir")
 
-    while True:
-        opc = (input("ingrese tu opcion: "))
+   
+    opc = (input("ingrese tu opcion: "))
         
-        if opc not in  ["1", "2", "3"]:
-            print("debes elegir una opcion en el rango de 1-3")
-        else:
-            break
+    if opc not in  ["1", "2", "3", "4"]:
+        print("debes elegir una opcion en el rango de 1-4")
+        continue
+        
 
     
     
@@ -117,50 +117,57 @@ if armas_acumulado > 0:
             nivel = int(input("\n que nivel eres (1 al 100) "))
             break
         except Exception:
-            print("Erro!! , intente de nuevo")
+            print("Error!! , intente de nuevo")
             
 
-if nivel >= 90:
-    print("obtienes 10% de descuento")
-    descuento = 0.30
-    porcentaje = 30
-elif nivel >= 30:
-    print("obtienes 20% de descuento")
-    descuento = 0.20
-    porcentaje = 20
-elif nivel <= 30:
-    print("obtienes 30% de descuento")
-    descuento = 0.10
-    porcentaje = 10
+    if nivel >= 90:
+        print("obtienes 10% de descuento")
+        descuento = 0.30
+        porcentaje = 30
+    elif nivel >= 30:
+        print("obtienes 20% de descuento")
+        descuento = 0.20
+        porcentaje = 20
+    elif nivel <= 30:
+        print("obtienes 30% de descuento")
+        descuento = 0.10
+        porcentaje = 10
+    else:
+        print("tu nivel es muy bajo para obtener un descuento")
+
+    print("_"*70)
+
+    iva = 0.19
+
+    precio_iva = armas_acumulado + (armas_acumulado * iva) 
+
+    total = precio_iva - (precio_iva * descuento)
+
+
+
+    print(f"nombre {nombre}")
+    print(f"rut {rut}-{dv}")
+    print(f"direccion {direccion}")
+
+    for arm, pre in  armas_comprada:
+        print(f"{arm: <30} ${pre:>10,.0f}")
+
+    print("-" *90)
+    
+    print("\n RESUMEN DE TU COMPRA")
+
+    print("-" * 42)
+    if porcentaje > 0:
+        print(f"{'Total sin IVA:': <30} ${armas_acumulado:>10,.0f}")
+        print(f"{"descuento aplicado:" :<30}  {descuento:>10}")
+        print(f"{'Total con IVA (19%):': <30} ${total:>10,.0f}")
+        print("=" *90)
 else:
-    print("tu nivel es muy bajo para obtener un descuento")
-
-print("_"*70)
-
-iva = 0.19
-
-precio_iva = armas_acumulado + (armas_acumulado * iva) 
-
-total = precio_iva - (precio_iva * descuento)
-
-
-
-for arm, pre in  armas_comprada :
-    print(f"{arm: <30} ${pre:>10,.0f}")
-
-print("-" *90)
-
-print(f"nombre {nombre}")
-print(f"rut {rut}-{dv}")
-print(f"direccion {direccion}")
-
-print("\n RESUMEN DE TU COMPRA")
-
-print("-" * 42)
-print(f"{'Total sin IVA:': <30} ${armas_acumulado:>10,.0f}")
-print(f"{"descuento aplicado:" :<30}  {descuento:>10}")
-print(f"{'Total con IVA (19%):': <30} ${total:>10,.0f}")
-print("=" *90)
+    print("no compraste ningun elemento, vuelva pronto!!")
+    print("=" *90)
+    
+    
+    
 
 
 
